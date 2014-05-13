@@ -1,11 +1,11 @@
 <?php
 class ObjectiveSizing extends Sizing
 {
-	__construct(array $array) {
+	function __construct(array $array) {
 		if (isset($array['id'])) {
 			$this->id = $array['id'];
 		}
-		if (isset($array['id'])) {
+		if (isset($array['user_id'])) {
 			$this->user_id = $array['user_id'];
 		}
 		

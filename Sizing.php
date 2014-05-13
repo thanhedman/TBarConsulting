@@ -2,21 +2,21 @@
 class Sizing
 {
 	//persistence properties
-	private $id = -1;
-	private $user_id;
+	public $id = -1;
+	public $user_id;
 	
 	//subjective properties
-	private $size;
-	private $chest;
-	private $hips;
-	private $cup;
+	public $size;
+	public $chest;
+	public $hips;
+	public $cup;
 	
 	//objective properties
-	private $band;
-	private $cupsize;
-	private $bottom;
+	public $band;
+	public $cupsize;
+	public $bottom;
 	
-	__construct( array $array; ) {
+	function __construct( array $array ) {
 		if (isset($array['id'])) {
 			$this->id = $array['id'];
 		}
@@ -34,7 +34,7 @@ class Sizing
 		}
 	}
 	//void
-	calculateObjective($size, $chest, $hips, $cup) {
+	function calculateObjective($size, $chest, $hips, $cup) {
 		switch ($cup) {
 			case 1:
 				$this->cupsize = 'A';

@@ -1,5 +1,8 @@
 <?php
+session_start();
 include('Sizing.php');
+include('ObjectiveSizing.php');
+
 if ($_POST['command'] == 'submitSubjective') {
 	$size = $_POST['size'];
 	$chest = $_POST['chest'];
@@ -17,7 +20,13 @@ if ($_POST['command'] == 'submitSubjective') {
 	$_SESSION['band'] = $sizing->band;
 	$_SESSION['cupsize'] = $sizing->cupsize;
 	$_SESSION['bottom'] = $sizing->bottom;
-	$_SESSION['sizing'] = $sizing;
+	$response = array( 	'band' => $sizing->band,
+						'cupsize' => $sizing->cupsize,
+						'bottom' => $sizing->bottom,
+						'size' => $sizing->size);
+	$response = json_encode($response);
+	header('Content-type: application/json');
+	echo $response;
 }
 
 if ($_POST['command'] == 'submitObjective') {

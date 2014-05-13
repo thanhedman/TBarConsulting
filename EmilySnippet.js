@@ -50,6 +50,7 @@ function swapBodypart(e) {
 	var option = $(this).data("value");
 	var oldOption = $("." + part + "Option.selection").data("value");
 	$("." + part + "Option.selection").removeClass("selection");
+	$("#" + part + option);
 	$("#" + part + oldOption).toggle().removeClass("selected");
 	$("#" + part + option).toggle().addClass("selected");
 	$(this).addClass("selection");
@@ -58,11 +59,14 @@ function swapBodypart(e) {
 
 //collect all current measurements and POST them
 function submit(e){
-	var waist = $(".waistOption.selection").data("value");
 	var hips = $(".hipsOption.selection").data("value");
+	console.log(hips);
 	var chest = $(".chestOption.selection").data("value");
+	console.log(chest);
 	var cup = $(".cupOption.selection").data("value");
+	console.log(cup);
 	var size = $("#size").data("value");
+	console.log(size);
 //	var shape = $("#shape").data("value");
 	
 	$.ajax({
@@ -70,11 +74,14 @@ function submit(e){
 		url: "submit.php",
 		data: {	command: 'submitSubjective',
 				size: size,
-				waist: waist,
 				hips: hips,
 				chest: chest,
 				cup: cup}
+	})
+	.success(function(data){
+		alert("Bra size: " + data.band + data.cupsize + " and bottom size: " + data.bottom);
 	});
+	
 }
 
 function loadCallback(target, img) {
@@ -91,3 +98,5 @@ $(".chestOption").click(enableChildren);
 $(".chestOption").click(loadOptions);
 //listeners on click to display correct image
 $(".chestOption, .hipsOption, .cupOption").click(swapBodypart);
+//listener for submit
+$("#submit").click(submit);
