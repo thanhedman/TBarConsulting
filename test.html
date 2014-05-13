@@ -1,16 +1,30 @@
+<script src="jquery.min.js"></script>
+<link rel="stylesheet" href="css/test.css">
 <div id="shape"></div>
 <div id="size" data-value="1"></div>
 <div id="bodyContainer">
-<div id="cupsContainer">
-	<img src="assets/img/size1/defaults/cups.png" id="cupsPlaceholder" />
+<div id="chestContainer">
+	<div id="cupContainer">
+	</div>
+	
+	<img src="body/chest1/chest1.png" class="chest selected" id="chest1" />
+	<img src="body/chest2/chest2.png" class="chest" id="chest2" />
+	<img src="body/chest3/chest3.png" class="chest" id="chest3" />
+
+	<div id="hipsContainer">
+	</div>
 </div>
-<div id="waistContainer">
-	<img src="assets/img/size1/waist1.png" class="selection waist" id="waist1" />
-	<img src="assets/img/size1/waist2.png" class="waist" id="waist2" />
-	<img src="assets/img/size1/waist3.png" class="waist" id="waist3" />
-	<img src="assets/img/size1/waist4.png" class="waist" id="waist4" />
 </div>
-<div id="hipsContainer">
-	<img src="assets/img/size1/defaults/hips.png" />
-</div>
-</div>
+<button disabled class="cupOption selection" data-value="1" data-part="cup">Cup 1</button>
+<button disabled class="cupOption" data-value="2" data-part="cup">Cup 2</button>
+<button disabled class="cupOption" data-value="3" data-part="cup">Cup 3</button>
+<button disabled class="cupOption" data-value="4" data-part="cup">Cup 4</button>
+<br>
+<button class="chestOption selection" data-value="1" data-part="chest">Chest 1</button>
+<button class="chestOption" data-value="2" data-part="chest">Chest 2</button>
+<button class="chestOption" data-value="3" data-part="chest">Chest 3</button>
+<br>
+<button disabled class="hipsOption selection" data-value="1" data-part="hips">Hips 1</button>
+<button disabled class="hipsOption" data-value="2" data-part="hips">Hips 2</button>
+<button disabled class="hipsOption" data-value="3" data-part="hips">Hips 3</button>
+<script type="text/javascript" src="EmilySnippet.js"></script>

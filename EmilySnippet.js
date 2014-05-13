@@ -1,16 +1,15 @@
-//listeners on click to asynch load the right options
-$(".chestOption").on("click", loadOptions( $("#size").data("value"), $(this).data("value"), "hips", "hipsContainer" ) );
-$(".chestOption").on("click", loadOptions( $("#size").data("value"), $(this).data("value"), "cup", "cupContainer" ) );
-//listeners on click to display correct image
-$(".chestOption").on("click", swapBodypart( "chest" ) );
-$(".hipsOption").on("click", swapBodypart( "hips" ) );
-$(".cupOption").on("click", swapBodypart( "cup" ) );
-
 //asynch loads the possible options for the most recent selection
-function loadOptions(size, chestOption, part, target) {
+function loadOptions(e) {
+	chestOption = $(this).data("value");
+	loader(chestOption, "cup");
+	loader(chestOption, "hips");
+}
+
+function loader(chestOption, part) {
+var target = part + "Container";
 	if ( true ) {
-		//example: /size1/chest1/hips should call hips1.png - hips 4.png
-		var path = "/" + ["size" + size, "waist" + waistOption, part].join('/');
+		//example: body/chest1/hips should call hips1.png - hips3.png
+		var path = "body/" + ["chest" + chestOption, part, part].join('/');
 	} else {
 		alert("parameter mismatch");
 		return false;
@@ -19,34 +18,23 @@ function loadOptions(size, chestOption, part, target) {
 	if (part == 'cup') { var j=4; }
 	else { var j=3; }
 	//if no only 1 option exists, remove placeholder then add new elements
-	if ($("."+part).length == 0) {
-		while (i <= j) {
+	if ($("." + part).length == 0) {
+		while (i <= j+1) {
 			//eg create <img src="/size4/waist4/chest2/cup1.png" class="cup" id="cup1"/> unless it's image 1, set as invisible
-			if (i > 1) { var img = $("<img />").attr('src', path + i + '.png').addClass(part).attr('id', part + i).css('display', 'none'); }
-			else { var img = $("<img />").attr('src', path + i + '.png').addClass(part).attr('id', part + i).addClass("selection"); }
-				//onload callback
-			    $("#" + part + i).load(function() {
-					//if image isn't image like, let someone know
-					if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
-						alert('broken image!');
-					} else {
-						//remove placeholder
-						$("#" + part + "Placeholder").remove();
-						//add image at target
-						$("#" + target).append(img);
-					}
-				});
+			if (i > 1) { var img = $("<img />").attr('src', path + i + '.png').addClass(part).attr('id', part + i).load(loadCallback(target, img));}
+			else { var img = $("<img />").attr('src', path + i + '.png').addClass(part).attr('id', part + i).addClass("selected").load(loadCallback(target, img));}
 			i++;
 		}
 	//if multiple option images have been loaded
 	} else {
+		console.log("resourcing images from " + path)
 		//set them each to the appropriate src
 		while (i <= j) {
-			var img = $("#" + part + i).attr('src', path + i + .png);
-				load(function() {
+			var img = $("#" + part + i).attr('src', path + i + ".png")
+				.load(function() {
 					//if image isn't image like, let someone know
 					if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
-						alert('broken image!');
+						console.log('broken image!');
 					} else {
 						
 					}
@@ -57,16 +45,19 @@ function loadOptions(size, chestOption, part, target) {
 }
 
 //swap to the selected option for the bodypart passed to the function
-function swapBodypart( part ) {
+function swapBodypart(e) {
+	part = $(this).data("part");
 	var option = $(this).data("value");
-	$("." + part + "Option.selection").removeClass("selection").toggle();
-	$("#" + part + option).fadeToggle();
+	var oldOption = $("." + part + "Option.selection").data("value");
+	$("." + part + "Option.selection").removeClass("selection");
+	$("#" + part + oldOption).toggle().removeClass("selected");
+	$("#" + part + option).toggle().addClass("selected");
 	$(this).addClass("selection");
 }
 
 
 //collect all current measurements and POST them
-function submit(){
+function submit(e){
 	var waist = $(".waistOption.selection").data("value");
 	var hips = $(".hipsOption.selection").data("value");
 	var chest = $(".chestOption.selection").data("value");
@@ -85,3 +76,18 @@ function submit(){
 				cup: cup}
 	});
 }
+
+function loadCallback(target, img) {
+	$("#" + target).append(img);
+}
+
+function enableChildren(e) {
+	$(".cupOption, .hipsOption").prop("disabled", false);
+}
+
+//listeners to enable cup and hips buttons
+$(".chestOption").click(enableChildren);
+//listeners on click to asynch load the right options
+$(".chestOption").click(loadOptions);
+//listeners on click to display correct image
+$(".chestOption, .hipsOption, .cupOption").click(swapBodypart);

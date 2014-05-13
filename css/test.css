@@ -1,0 +1,23 @@
+.cup, .chest, .hips {
+	display: none;
+}
+
+.selected {
+	display: block;
+}
+
+.chest {
+	z-index: 0;
+}
+
+.cup {
+	position: absolute;
+	top: 1 px;
+	z-index: 2;
+}
+
+.hips {
+	position: absolute;
+	top: 7px;
+	z-index: 1;
+}
