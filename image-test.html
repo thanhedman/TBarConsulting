@@ -1,0 +1,66 @@
+<!doctype html>
+<head>
+<script src="jquery.min.js"></script>
+<meta charset="utf-8">
+<title>Image Test</title>
+<style>
+#bodyContainer{
+	width:300px;
+	height:360px;
+	background-image:url("/alpha/body/chest1/chest1.png");
+	z-index:0;
+	display:block;
+	top:0px;
+	float:left;
+}
+#cupContainer{
+	width:300px;
+	height:360px;
+	background-image:url("/alpha/body/chest1/cup/cup1.png");
+	z-index:1;
+	display:block;
+	top:0px;
+	float:left;
+	margin-left:-300px;
+}
+#hipContainer{
+	width:300px;
+	height:360px;
+	background-image:url("/alpha/body/chest1/hips/hips1.png");
+	z-index:2;
+	display:block;
+	top:0px;
+	float:left;
+	margin-left:-300px;
+}
+#preLoad{
+	display: none;
+}
+</style>
+</head>
+<body>
+<div id="bodyContainer">
+</div>
+<div id="cupContainer">
+</div>
+<div id="hipContainer">
+</div>
+<div id="preLoad">
+<img src="/alpha/body/chest2/chest2.png" />
+<img src="/alpha/body/chest3/chest3.png" />
+</div>
+<button disabled class="cupOption selection" data-value="1" data-part="cup">Cup 1</button>
+<button disabled class="cupOption" data-value="2" data-part="cup">Cup 2</button>
+<button disabled class="cupOption" data-value="3" data-part="cup">Cup 3</button>
+<button disabled class="cupOption" data-value="4" data-part="cup">Cup 4</button>
+<br>
+<button class="chestOption selection" data-value="1" data-part="chest">Chest 1</button>
+<button class="chestOption" data-value="2" data-part="chest">Chest 2</button>
+<button class="chestOption" data-value="3" data-part="chest">Chest 3</button>
+<br>
+<button disabled class="hipsOption selection" data-value="1" data-part="hips">Hips 1</button>
+<button disabled class="hipsOption" data-value="2" data-part="hips">Hips 2</button>
+<button disabled class="hipsOption" data-value="3" data-part="hips">Hips 3</button><br></br>
+<button id="submit">Submit</button>
+<script type="text/javascript" src="EmilySnippetBg.js"></script>
+</body>

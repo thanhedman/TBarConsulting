@@ -1,0 +1,39 @@
+#bodyContainer{
+	width:300px;
+	height:360px;
+	background-image:url("/alpha/body/chest1/chest1.png");
+	z-index:0;
+	display:block;
+	top:0px;
+	float:left;
+}
+#cupContainer{
+	width:300px;
+	height:360px;
+	background-image:url("/alpha/body/chest1/cup/cup1.png");
+	z-index:1;
+	display:block;
+	top:0px;
+	float:left;
+	margin-left:-300px;
+}
+#hipsContainer{
+	width:300px;
+	height:360px;
+	background-image:url("/alpha/body/chest1/hips/hips1.png");
+	z-index:2;
+	display:block;
+	top:0px;
+	float:left;
+	margin-left:-300px;
+}
+#preLoad{
+	display: none;
+}
+li,ul#size{
+	display:inline;
+	list-style-type:none;
+}
+.selection{
+font-weight: bold;
+}
